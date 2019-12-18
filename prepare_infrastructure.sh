@@ -4,11 +4,11 @@ if [[ -z "${ARM_SUBSCRIPTION}" ]]; then
   echo "Setup default value for ARM_SUBSCRIPTION !!!!"
   exit 1
 fi
-location="${ARM_ENVIRMENT:-westeurope}"
-resourceGroup="${ARM_RESOURCE_GROUP:-weAKSMySQLResourceGroup}"
-acrName="${ARM_ACR_NAME:-weaksmysqlacr}"
-aksName="${ARM_AKS_NAME:-weAKSMySQLCluster}"
-mysqlname="${ARM_MYSQL_NAME:-weaksmysqldemoserver}"
+location="${ARM_ENVIRMENT:-northeurope}"
+resourceGroup="${ARM_RESOURCE_GROUP:-neAKSMySQLResourceGroup}"
+acrName="${ARM_ACR_NAME:-neaksmysqlacr}"
+aksName="${ARM_AKS_NAME:-neAKSMySQLCluster}"
+mysqlname="${ARM_MYSQL_NAME:-neaksmysqldemoserver}"
 subscription="${ARM_SUBSCRIPTION}"
 
 az group create --name $resourceGroup --location $location --subscription $subscription --output none
