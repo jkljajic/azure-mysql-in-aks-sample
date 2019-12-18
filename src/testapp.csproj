@@ -9,4 +9,10 @@
     <PackageReference Include="MySqlConnector" Version="0.61.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="connections.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

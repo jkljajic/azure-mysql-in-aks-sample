@@ -1,5 +1,14 @@
-FROM mcr.microsoft.com/dotnet/core/runtime:3.0
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
+WORKDIR /app
 
-COPY src/bin/Release/netcoreapp3.0/publish/ app/
+# copy csproj and restore as distinct layers
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+WORKDIR /src
+COPY ./src ./
+RUN dotnet publish testapp.csproj -c Release -o /app/publish
 
-ENTRYPOINT ["dotnet", "app/testapp.dll"]
+FROM base AS final
+WORKDIR /app
+#ENV MYSQL_CONNECTION="Server=siaabr-dev-dbsvr.mariadb.database.azure.com;Port=3306;Uid=typo3@siaabr-dev-dbsvr;Pwd=rYqs1JDoVCZrbeeQ;Database=typo3;SslMode=None";
+COPY --from=build /app/publish .
+ENTRYPOINT ["dotnet", "testapp.dll"]
